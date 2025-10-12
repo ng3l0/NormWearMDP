@@ -1,4 +1,25 @@
 **.DS_Store
 **/__pycache__/
 
-**/model_ckpts/
+**/model_ckpts/__pycache__/
+*.py[cod]
+*.egg-info/
+.DS_Store
+
+# Virtual env
+.venv/
+venv/
+env/
+
+# Modelli/dati temporanei
+*.pth
+*.pt
+*.ckpt
+checkpoints/
+runs/
+data/
+.ipynb_checkpoints/
+
+# IDE
+.idea/
+.vscode/
