@@ -1,7 +1,7 @@
 from scipy import signal
 import torchaudio.transforms as T
 
-from .modules.normwear import *
+from modules.normwear import *
 
 def wt(ts, lf=0.1, hf=65):
     # in: L
@@ -33,12 +33,6 @@ class NormWearModel(nn.Module):
             weight_path=""
         ):
         super().__init__()
-
-        # # weight path note
-        # weight_path = '../data/results/model_mae_checkpoint-140.pth' # 37k
-        # weight_path = '../data/results/NormWear_Large_checkpoint-10.pth' # 24w 
-        # weight_path = '../data/results/job_rand_maskv3_checkpoint-15470.pth' # 1.5Tb
-        # 'modules/normwear_ckpt-15470.pth'
         
         self.optimized_cwt = optimized_cwt
 
@@ -48,7 +42,7 @@ class NormWearModel(nn.Module):
         # load pretrained checkpoint
         if len(weight_path) > 0:
             try:
-                stat_dict = torch.load(weight_path, map_location=torch.device('cpu'))['model']
+                stat_dict = torch.load(weight_path, map_location=torch.device('cpu'), weights_only=False)['model']
                 self.backbone.load_state_dict(stat_dict)
                 print("Model Checkpoint is successfully loaded!")
             except:
